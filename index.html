@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verduleria Rami</title>
+      <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<header>
+    <nav>
+      <a href="#inicio">INICIO</a>
+      <a href="#blog">BLOG VERDU</a>
+      <a href="#contacto">CONTACTO</a>
+    </nav>
+  </header>
+
+  <section id="inicio">
+    <div class="carousel" id="carousel">
+      <img src="./assets/img/1.png" alt="Imagen 1">
+      <img src="./assets/img/2.png" alt="Imagen 2">
+      <img src="./assets/img/3.png" alt="Imagen 3">
+    </div>
+    <div class="carousel-buttons">
+      <button onclick="moveSlide(-1)">Anterior</button>
+      <button onclick="moveSlide(1)">Siguiente</button>
+    </div>
+   <hr>
+     <h1>Frutas y Verduras Frescas, Directo a Tu Mesa</h1>
+      <h2>Verduleria Rami</h2>
+    <p>Desde 1970 siendo ya, una tradicion, te ofrecemos una extensa variedad  de Frutas y Verduras
+    Nuestro compromiso con la frescura y la excelencia nos lleva las mejores verduras y frutas directo a tu casa
+    tambien ofrecemos envios a domicilio sin cargo<br>
+      
+  <table border="1">
+  <tr>
+    <td><img src="./assets/img/4.png" alt="Imagen 4" style="width: 700px; height: 600px; object-fit: cover;">  </td>
+    <td><img src="./assets/img/5.png" alt="Imagen 5" style="width: 700px; height: 600px; object-fit: cover;"></td>
+  </tr>
+</table>
+
+  </section>
+
+
+  <section id="blog">
+    <h2>Mira este video con puras verduras</h2>
+     <table border="1">
+  <tr>
+    <td> <iframe width="560" height="315" src="https://www.youtube.com/embed/dYV2wW9XZAc?si=mhJlk4WkKnT-0Yzj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+    <td><iframe width="560" height="315" src="https://www.youtube.com/embed/bDdX7Q1YzIc?si=oomiTvZyTngen61-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+    <td><iframe width="560" height="315" src="https://www.youtube.com/embed/H5OIbuVr8RA?si=OU7UBooQDqUoKPmB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+</tr>
+
+</table>
+    <h2>Escucha este Audio Generado con la IA, directo para  nuestra Verduleria Rami</h2>
+ 
+    <audio src="./assets/audio/1.mp3" controls></audio>
+    <hr>
+      <audio src="./assets/audio/2.mp3" controls></audio>
+    
+    
+    
+   
+    
+  </section>
+
+  <section id="contacto">
+    <h2>CONTACTO</h2>
+    <form action="https://formspree.io/f/tu-codigo" method="POST" id="contact-form">
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <input type="email" name="email" placeholder="Tu correo" required>
+      <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
+      <input type="submit" value="Enviar">
+    </form>
+    <p id="form-message"></p>
+
+  </section>
+   
+  <footer>
+     <a href="https://wa.me/543813859443" target="_blank">
+  <img src="https://img.icons8.com/color/48/000000/whatsapp.png" 
+       alt="WhatsApp"
+       style="width:48px;height:48px;">
+</a>
+    <p>© Pagina para Proyecto de Calamuchita</p>
+  </footer>
+
+  <script>
+    // Carrusel
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel img');
+
+    function moveSlide(direction) {
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+      const offset = -currentSlide * 100;
+      slides.forEach(slide => {
+        slide.style.transform = `translateX(${offset}%)`;
+      });
+    }
+
+    // Formulario con Formspree
+    const form = document.getElementById("contact-form");
+    const message = document.getElementById("form-message");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        message.textContent = "¡Mensaje enviado con éxito!";
+        form.reset();
+      } else {
+        message.textContent = "Hubo un error. Intenta de nuevo.";
+      }
+    });
+  </script>
+
+
+
+</body>
+</html>
